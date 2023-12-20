@@ -17,9 +17,9 @@ Basitleşen dosya yolu ile işlem yapmak kolaylaşmaktadır.
 ## Senaryo
 
 Bir cihazda sdcard veya usb ile otomatik bir işlem başlatmak istiyorsunuz.
-Başlatılan işlem büyük ihtimal udev yöneticisi kullarına göre boş olan dizine mount edilecektir.
+Başlatılan işlem büyük ihtimalle udev yöneticisi kullarına göre boş olan dizine mount edilecektir.
 
-Başlatılan dizin hangi dizine mount ettiğini bularak işlem yapmanız gerekiyor.
+Başlatılan işlemin hangi dizine mount ettiğini bularak işlem yapmanız gerekiyor.
 Aslında yapılması gereken diğer programlama dillerindeki string split işlemidir
 fakat bash script ile yapılması gerekiyorsa birkaç komut vardır.
 
