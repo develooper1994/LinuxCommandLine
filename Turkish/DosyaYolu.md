@@ -1,5 +1,19 @@
 # Dosya Yolunu Elde Etmek
 
+Linux işletim sisteminde bir dosya yolu çözme algoritması bulunmaktadır. 
+
+- '.' ve '~+' varsa önceki($PWD) dizinini
+- '..' bir üst dizini
+- '/' root dizinini
+- '~' home dizinini
+- '~-' ve '-' varsa önceki($OLDPWD) dizinini
+
+belirtmektedir.
+
+İşte bu ifadeler yanyana geldiğinde uzun satırlar oluşturabilmektedir. 
+Dosya yolu çözümlendiğinde ifade basitleşmektedir.
+Basitleşen dosya yolu ile işlem yapmak kolaylaşmaktadır.
+
 ## Senaryo
 
 Bir cihazda sdcard veya usb ile otomatik bir işlem başlatmak istiyorsunuz.
@@ -18,8 +32,8 @@ fakat bash script ile yapılması gerekiyorsa birkaç komut vardır.
 Amacı dosyanın veya dizinin içinde bulunduğu dizini vermektir.
 Yaptığı işlem ise dosya ismini '/' ayracıyla birlikte siler.
 
-- `dirname -z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
-yeni satır karakteri göndermez.
+- `-z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
+yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
 
 > Fakat burada iki sorun vardır.
 
@@ -41,13 +55,13 @@ dirname yok                                 # .
 echo $?                                     # son programın çıkış kodu
 ```
 
-### `basename`
+### `basename`[^2]
 
-Amacı dirname ile benzerdir. Burada dosya yolunu almak yerine dosya ismini alır. 
+Amacı [dirname](DosyaYolu.md#dirname) ile benzerdir. Burada dosya yolunu almak yerine dosya ismini alır. 
 Yaptığı işlem ise dosya yolunu '/' ayracıyla birlikte siler.
 
-- `basename -z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
-yeni satır karakteri göndermez.
+- `-z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
+yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
 - `basename -a` ile birden fazla string işlenip birden fazla çıktı elde edilebilir.
 
     ``` shell
@@ -81,25 +95,43 @@ basename yok                                # yok
 echo $?                                     # son programın çıkış kodu
 ```
 
-### `readlink`
+### `readlink`[^3]
 
 Temel işlevi dosya yolu çözümleme işlemini yapmaktır.
 
 1. Dosyanın veya dizinin **sembolink** bağlantıyı takip eder ve dosya yolu çözümlemesi yapar.
 2. Dosyanın veya dizinin **kanonik(kurallara uygun)** adını verir ve dosya yolu çözümlemesi yapar.
-- `readlink -z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
-yeni satır karakteri göndermez.
+- `-z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
+yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
 
 ```shell
 readlink -f file
 readlink -f $PWD/file
 ```
 
-### `realpath`
+### `realpath`[^4]
+
+Temel [readlink](DosyaYolu.md#readlink) gibi işlevi dosya yolu çözümleme işlemini yapmaktır. 
+readlink ile arasındaki en büyük fark readlink varsayılan olarak sadece sembolik link ise 
+sonuç verirken realpath hemen sonuç vermektedir.
+
+``` shell
+readlink /usr/../usr/..    #
+realpath /usr/../usr/..    # /
+```
+1. `-z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
+yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
+2. -s anahtarının davranışı diğer path çözümlemesi yapan komutlardan ayrılır.
+Eğer "/usr/bin/X11/" "/usr/bin/" dizinini gösteren bir dizin olduğunu kabul edelim [^4]
+    ``` shell
+    realpath /../usr/bin/X11/./xterm        # /usr/bin/xterm
+    realpath -s /../usr/bin/X11/./xterm     # /usr/bin/X11/xterm
+    ```
 
 ## Çözüm
 
-dirname $(readlink -f file)
+`dirname $(readlink -f file)` veya `dirname $(realpath file)` kullanımı dosya yolu sorununu çözecektir. 
+İki seçenekten hangisinin daha iyi olduğu arasında kaldığımı söylemem gerek.
 
 ## Test
 
@@ -133,11 +165,6 @@ echo $(readlink -m file)
 ```
 
 [^1]: <https://linux.die.net/man/1/readlink>
-[^2]:
-[^3]:
-[^4]:
-[^5]:
-[^6]:
-[^7]:
-[^8]:
-[^9]:
+[^2]: <https://linux.die.net/man/1/basename>
+[^3]: <https://man7.org/linux/man-pages/man1/readlink.1.html>
+[^4]: <https://man7.org/linux/man-pages/man3/realpath.3.html>
