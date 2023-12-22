@@ -1,6 +1,6 @@
 # File Path Resolve
 
-Linux operation system has a file path resolve algoritm
+Linux operation system has a file path resolve algorithm
 
 > There are some shorthand notations:
 
@@ -19,8 +19,8 @@ Processing becomes easier with simplified file path.
 Let's say you need to start automatic process when plug in usb stick to device.
 Most probably initiated process will be mounted on available directory according to udev rules.
 
-It is necessary to find out which directory initiated process is running from. 
-In fact what needs to be done is string split operation like in any other programing languages, but It is needs to be done with bash script, there are few commands.
+It is necessary to find out which directory the process was started from.
+In fact, what needs to be done is string split operation like in any other programming languages, but It is needs to be done with bash script, there are few commands.
 
 ## Research
 
@@ -29,7 +29,7 @@ In fact what needs to be done is string split operation like in any other progra
 ### `dirname[^1]`
 
 Its purpose is to give the directory of the directory or file.
-What is does it removes file name along with the '/' seperator.
+What is does it removes file name along with the '/' separator.
 
 - It doesn't output a new line character if command used with `-z` option. 
 Can be used with `xargs -0`.
@@ -37,21 +37,21 @@ Can be used with `xargs -0`.
 > But there's a problem.
 
     1. It gives away relative file path('.') if it doesn't place to command full file path.
-    2. It doesn't give any output to last command output.
+    2. It doesn't give any output to the last command output.
     3. It performs string operation whatever file path is full or relative.
 
 ``` shell
 echo $PWD                                   # /home/username
 dirname $PWD                                # /home
-echo $?                                     # son programın çıkış kodu
+echo $?                                     # last exit code
 dirname file                                # .
-echo $?                                     # son programın çıkış kodu
+echo $?                                     # last exit code
 dirname $PWD/file                           # /home/username
-echo $?                                     # son programın çıkış kodu
+echo $?                                     # last exit code
 dirname yok/boyle/bir/dosya/veya/dizin      # yok/boyle/bir/dosya/veya
 dirname /yok/boyle/bir/dosya/veya/dizin     # /yok/boyle/bir/dosya/veya
 dirname yok                                 # .
-echo $?                                     # son programın çıkış kodu
+echo $?                                     # last exit code
 ```
 
 ### `basename`[^2]
@@ -77,22 +77,22 @@ Can be used with `xargs -0`
     ```
 
 There are some special variables. `$0` is one of them and i can't continue without mansion it. It used to print file name of the bash script currently running on.
-There is one a big catch! It gives file name with full path if the bash script initiate with full file path.
+There is one big catch! It gives file name with full path if the bash script initiates with full file path.
 
 > Problems are the same as dirname
 
 ``` shell
 echo $PWD                                   # /home/username
 basename $PWD                               # username
-echo $?                                     # son programın çıkış kodu
+echo $?                                     # last exit code
 basename file                               # file
-echo $?                                     # son programın çıkış kodu
+echo $?                                     # last exit code
 basename $PWD/file                          # /home/username
-echo $?                                     # son programın çıkış kodu
+echo $?                                     # last exit code
 basename yok/boyle/bir/dosya/veya/dizin     # dizin
 basename /yok/boyle/bir/dosya/veya/dizin    # dizin
 basename yok                                # yok
-echo $?                                     # son programın çıkış kodu
+echo $?                                     # last exit code
 ```
 
 ### `readlink`[^3]
@@ -121,9 +121,9 @@ realpath /usr/../usr/..    # /
 ```
 
 1. It doesn't output new line character if it used with `-z` option. Can be used with `xargs -0`
-2. `-s` option behavior stand out from other command used to resolve file path.
+2. `-s` option behavior stands out from other commands used to resolve file path.
 
-    > Lets presume "/usr/bin/X11/" is symbolic link to "/usr/bin/".
+    > Let's presume "/usr/bin/X11/" is symbolic link to "/usr/bin/".
 
     ``` shell
     realpath /../usr/bin/X11/./xterm        # /usr/bin/xterm
