@@ -19,7 +19,7 @@ Basitleşen dosya yolu ile işlem yapmak kolaylaşmaktadır.
 Bir cihazda sdcard veya usb ile otomatik bir işlem başlatmak istiyorsunuz.
 Başlatılan işlem büyük ihtimalle udev yöneticisi kullarına göre boş olan dizine mount edilecektir.
 
-Başlatılan işlemin hangi dizine mount ettiğini bularak işlem yapmanız gerekiyor.
+Başlatılan işlemin hangi diziden çalıştığını bularak işlem yapılması gerekiyor.
 Aslında yapılması gereken diğer programlama dillerindeki string split işlemidir
 fakat bash script ile yapılması gerekiyorsa birkaç komut vardır.
 
@@ -32,8 +32,7 @@ fakat bash script ile yapılması gerekiyorsa birkaç komut vardır.
 Amacı dosyanın veya dizinin içinde bulunduğu dizini vermektir.
 Yaptığı işlem ise dosya ismini '/' ayracıyla birlikte siler.
 
-- `-z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
-yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
+- `-z` seçeneğiyle birlikte kullanılırsa yeni satır karakteri üretmez. `xargs -0` ile kullanılabilir. `xargs -0` ile kullanılabilir.
 
 > Fakat burada iki sorun vardır.
 
@@ -60,8 +59,7 @@ echo $?                                     # son programın çıkış kodu
 Amacı [dirname](DosyaYolu.md#dirname) ile benzerdir. Burada dosya yolunu almak yerine dosya ismini alır. 
 Yaptığı işlem ise dosya yolunu '/' ayracıyla birlikte siler.
 
-- `-z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
-yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
+-`-z` seçeneğiyle birlikte kullanılırsa yeni satır karakteri üretmez. `xargs -0` ile kullanılabilir. `xargs -0` ile kullanılabilir.
 - `basename -a` ile birden fazla string işlenip birden fazla çıktı elde edilebilir.
 
     ``` shell
@@ -69,15 +67,16 @@ yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
     # boyle
     # sey
     ```
-- `basename -s <ayraç> <string>` dizinle birlikte dosya eklentisini silmek üzere kullanılabilir. Belki bu sayede
+
+- `basename -s <ayraç> <string>` dizinle birlikte dosya eklentisini silmek üzere kullanılabilir. Belki bu sayede;
 
     ``` shell
     basename -s .pyc $sysroot/python/site/numpy.pyc
     # curl
     ```
 
-Script yazarken $0 kendi adını verir. Fakat dosya tam dosya adıyla 
-çalıştırıldığında sadece dosya adı yerine dosya yoluyla birlikte çıktı üretir.
+Bazı özel değişkenler vardır. `$0` onlardan biridir ve konuyla ilgili olduğundan bahsetmeden geçemem. çalışan bash scriptin adını verir. 
+Fakat bir sorun var, dosya tam dosya adıyla çalıştırıldığında sadece dosya adı yerine dosya yoluyla birlikte çıktı üretir.
 
 > Buradaki sorunlar dirname sorunlarıyla aynıdır.
 
@@ -100,9 +99,9 @@ echo $?                                     # son programın çıkış kodu
 Temel işlevi dosya yolu çözümleme işlemini yapmaktır.
 
 1. Dosyanın veya dizinin **sembolink** bağlantıyı takip eder ve dosya yolu çözümlemesi yapar.
-2. Dosyanın veya dizinin **kanonik(kurallara uygun)** adını verir ve dosya yolu çözümlemesi yapar.
-- `-z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
-yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
+2. Dosyanın veya dizinin **kanonik(kurallara uygun)** adını verir.
+
+- `-z` seçeneğiyle birlikte kullanılırsa yeni satır karakteri üretmez. `xargs -0` ile kullanılabilir. `xargs -0` ile kullanılabilir.
 
 ```shell
 readlink -f file
@@ -112,17 +111,18 @@ readlink -f $PWD/file
 ### `realpath`[^4]
 
 Temel [readlink](DosyaYolu.md#readlink) gibi işlevi dosya yolu çözümleme işlemini yapmaktır. 
-readlink ile arasındaki en büyük fark readlink varsayılan olarak sadece sembolik link ise 
-sonuç verirken realpath hemen sonuç vermektedir.
+`readlink` ile arasındaki en büyük fark `readlink` varsayılan olarak sadece sembolik link ise sonuç verirken `realpath` hemen sonuç vermektedir.
 
 ``` shell
 readlink /usr/../usr/..    #
 realpath /usr/../usr/..    # /
 ```
-1. `-z` seçeneğiyle birlikte kullanılırsa stdout dosyasına
-yeni satır karakteri göndermez. `xargs -0` ile kullanılabilir.
-2. -s anahtarının davranışı diğer path çözümlemesi yapan komutlardan ayrılır.
-Eğer "/usr/bin/X11/" "/usr/bin/" dizinini gösteren bir dizin olduğunu kabul edelim [^4]
+
+1. `-z` seçeneğiyle birlikte kullanılırsa yeni satır karakteri üretmez. `xargs -0` ile kullanılabilir.
+2. `-s` anahtarının davranışı diğer path çözümlemesi yapan komutlardan ayrılır.
+
+    > "/usr/bin/X11/" "/usr/bin/" dizinini gösteren bir dizin olduğunu kabul edelim [^4]
+    
     ``` shell
     realpath /../usr/bin/X11/./xterm        # /usr/bin/xterm
     realpath -s /../usr/bin/X11/./xterm     # /usr/bin/X11/xterm
@@ -130,6 +130,7 @@ Eğer "/usr/bin/X11/" "/usr/bin/" dizinini gösteren bir dizin olduğunu kabul e
 
 ## Çözüm
 
+Bu sorun için çözümüm yolum var.
 `dirname $(readlink -f file)` veya `dirname $(realpath file)` kullanımı dosya yolu sorununu çözecektir. 
 İki seçenekten hangisinin daha iyi olduğu arasında kaldığımı söylemem gerek.
 
