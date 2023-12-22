@@ -1,4 +1,5 @@
-# Dosya Yolunu Elde Etmek
+[VIDEO](https://youtu.be/Cz_isoQFWL4)
+# [Dosya Yolunu Elde Etmek](https://youtu.be/Cz_isoQFWL4)
 
 Linux işletim sisteminde bir dosya yolu çözme algoritması bulunmaktadır. 
 
