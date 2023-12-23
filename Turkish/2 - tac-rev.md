@@ -2,7 +2,7 @@
 
 # [`Tac` ve `Rev`](https://youtu.be/HfkMWo9ogh0)
 
-Yeni bir komut daha göstereceğim. Bu komut komutla beraber artık ekrana bir şeyler yazdırmaya odaklanacağım. Aslında Unix/Linux ekosisteminde bir sürü komut vardır. Daha sonra diğer komutları da göstereceğim.
+Yeni bir komut daha göstereceğim. Bu komutla beraber artık ekrana bir şeyler yazdırmaya odaklanacağım. Aslında Unix/Linux ekosisteminde bir sürü komut vardır. Daha sonra diğer komutları da göstereceğim.
 
 ## [`Tac`][^tac]
 
@@ -39,8 +39,7 @@ w:q:
 
 ## [`Rev`][^rev]
 
-Bir komut daha var. [`Rev`][^rev] de bu sefer sağdan sola ters
-yazdırır. Çalışmasını değiştirecek bir seçeneği yoktur.
+[`Rev`][^rev] de bu sefer sağdan sola ters yazdırır. Çalışmasını değiştirecek bir seçeneği yoktur.
 
 ``` shell
 $ rev numbers
@@ -52,7 +51,7 @@ $ rev numbers
 ### [`Cat`][^cat] vs [`Tac`][^tac] vs [`Rev`][^rev]
 
 Diyelimki [`cat`][^cat], [`tac`][^tac], [`rev`][^rev], ... gibi programları kendim yazmaya çalışıyorum. 
-- [`Cat`][^cat] gibi veriyi sıralı yazarmak için program içinde buffer tutmama gerek kalmaz. Çıktıyı hemen yansıtır.
+- [`Cat`][^cat] gibi veriyi sıralı yazdırmak için program içinde buffer tutmama gerek kalmaz. Çıktıyı hemen yansıtır.
 
     ``` shell
     $ cat
@@ -62,9 +61,9 @@ Diyelimki [`cat`][^cat], [`tac`][^tac], [`rev`][^rev], ... gibi programları ken
     asd
     ```
 
-Fakat bir veriyi bir şekilde sırasının dışında yazdırmak istersem bir buffer ile işlem yapmam gerekir. Program veriyi tutmalı, işlemeli, işlemin bittiğini anlamalı ve veriyi işlemelidir. Kullanıcı girdi işleminin bittiğini '**Ctrl+D**' ile programa iletir ve program kapanır. Kapanırken de veriyi işleyebilir.
+Fakat bir veriyi bir şekilde sırasının dışında yazdırmak istersem bir buffer ile işlem yapmam gerekir. Program veriyi tutmalı, işlemin bittiğini anlamalı ve veriyi işlemelidir. Kullanıcı girdi işleminin bittiğini '**Ctrl+D**' ile programa iletir ve program kapanır. Kapanırken de veriyi işleyebilir.
 
-- [`tac`][^tac] çıktıyı aşağıdan yukarıya doğru yazdırdığından buffer kullanıp '**Ctrl+D**' girdiği gerçekleştiğinde işlemelidir.
+- [`tac`][^tac] çıktıyı aşağıdan yukarıya doğru yazdırdığından buffer kullanıp '**Ctrl+D**' girdiyi gerçekleştiğinde işlemelidir.
 
     ``` shell
     $ tac

@@ -18,10 +18,10 @@ Basitleşen dosya yolu ile işlem yapmak kolaylaşmaktadır.
 ## Senaryo
 
 Bir cihazda sdcard veya usb ile otomatik bir işlem başlatmak istiyorsunuz.
-Başlatılan işlem büyük ihtimalle udev yöneticisi kullarına göre boş olan dizine mount edilecektir.
+Başlatılan işlem büyük ihtimalle udev yöneticisi kurallarına göre boş olan dizine mount edilecektir.
 
-Başlatılan işlemin hangi diziden çalıştığını bularak işlem yapılması gerekiyor.
-Aslında yapılması gereken diğer programlama dillerindeki string split işlemidir
+Başlatılan işlemin hangi dizinden çalıştığı bulunarak işlem yapılması gerekiyor.
+Aslında yapılması gereken, diğer programlama dillerindeki string split işlemidir
 fakat bash script ile yapılması gerekiyorsa birkaç komut vardır.
 
 ## Araştırma
@@ -112,7 +112,7 @@ readlink -f $PWD/file
 ### [`realpath`][realpath]
 
 Temel [readlink](13-DosyaYolu.md#readlink) gibi işlevi dosya yolu çözümleme işlemini yapmaktır.
-`readlink` ile arasındaki en büyük fark `readlink` varsayılan olarak sadece sembolik link ise sonuç verirken `realpath` hemen sonuç vermektedir.
+`readlink` ile arasındaki en büyük fark `readlink` varsayılan olarak sadece sembolik link ise sonuç verirken `realpath` sembolik olup olmadığına bakmaksızın sonuç vermektedir.
 
 ``` shell
 readlink /usr/../usr/..    #
@@ -131,7 +131,7 @@ realpath /usr/../usr/..    # /
 
 ## Çözüm
 
-Bu sorun için çözümüm yolum var.
+Bu sorun için çözüm yolum var.
 `dirname $(readlink -f file)` veya `dirname $(realpath file)` kullanımı dosya yolu sorununu çözecektir. 
 İki seçenekten hangisinin daha iyi olduğu arasında kaldığımı söylemem gerek.
 

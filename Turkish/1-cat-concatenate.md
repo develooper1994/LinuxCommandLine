@@ -10,7 +10,7 @@ Genel olarak, [`cat`][cat] komutu, dosyaları birleştirme, içeriklerini göste
 
 En yaygın kullanımı dosya içeriklerini ekrana yazdırmaktır. Benim için en önemli kullanımı, dosyaları birleştirmektir.
 
-- Örnek olarak, 1'den 3'e kadar olan dosyaları oluşturdum ve dosya adlarıyla dolduralım.
+- Örnek olarak, 1'den 3'e kadar olan dosyaları oluşturdum ve dosya adlarıyla doldurdum.
 
     ``` shell
     $ echo 1 > 1.txt
@@ -63,8 +63,6 @@ $ cat günlük >> günlük2
 $ cat günlük2
 Arda
 Fakat sadece günlük kalmış
-Arda
-Fakat sadece günlük kalmış
 ```
 
 ## [`Cat`][cat] Seçenekleri
@@ -101,7 +99,7 @@ seq 5 > asd
 
 ## Gereksiz kullanımı
 
-- [`Cat`][cat] zaten dosya ismi verilmez ise zaten `stdout` gönderir. 
+- [`Cat`][cat] dosya ismi verilmez ise zaten `stdout` gönderir. 
 
     ``` shell
     $ cat asd
@@ -119,7 +117,7 @@ seq 5 > asd
     $ cat stdout < asd
     ```
 
-- Dosyayı bir daha üzerinde çalıştın tty yönlendirmeye gerek yok.
+- Dosyayı bir daha üzerinde çalıştığın tty yönlendirmeye gerek yok.
 
     ``` shell
     $ cat asd > $(tty)
