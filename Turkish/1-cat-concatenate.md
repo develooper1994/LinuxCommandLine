@@ -2,19 +2,23 @@
 
 # [Linux'ta Concatenate Komutu ve Kullanımı](https://youtu.be/dC6JloOWy1o)
 
-"Cat", aslında "concatenate" kelimesinin kısaltılmış halidir ve birçok farklı işlevi bulunmaktadır. Bu komut, sadece metin dosyalarını değil, aynı zamanda bazı medya türlerini de ardışık olarak birleştirebilir.
+[`Cat`]([^1]), aslında "concatenate" kelimesinin kısaltılmış halidir ve birçok farklı işlevi bulunmaktadır. Bu komut, sadece metin dosyalarını değil, aynı zamanda bazı medya türlerini de ardışık olarak birleştirebilir.
 
-En yaygın kullanımı dosya içeriklerini ekrana yazdırmaktır. Ancak, benim için en önemli kullanımı, dosya türlerini birleştirmektir. Örneğin, metin dosyalarını ardışık olarak birleştirebilir ve tek bir dosya gibi gösterebilirsiniz.
+Genel olarak, [`cat`]([^1]) komutu, dosyaları birleştirme, içeriklerini gösterme ve farklı seçeneklerle kullanma esnekliği sağlar. Bu, Linux kullanıcıları için oldukça yararlı bir araçtır.
 
-Örnek olarak, 1'den 3'e kadar olan dosyaları oluşturdum.
+## Dosyaları Birleştirmek
 
-``` shell
-$ echo 1 > 1.txt
-$ echo 2 > 2.txt
-$ echo 3 > 3.txt
-```
+En yaygın kullanımı dosya içeriklerini ekrana yazdırmaktır. Ancak, benim için en önemli kullanımı, dosyaları birleştirmektir. Örneğin, metin dosyalarını ardışık olarak birleştirebilir ve tek bir dosya gibi gösterebilirsiniz.
 
-- tek tek
+- Örnek olarak, 1'den 3'e kadar olan dosyaları oluşturdum.
+
+    ``` shell
+    $ echo 1 > 1.txt
+    $ echo 2 > 2.txt
+    $ echo 3 > 3.txt
+    ```
+
+- ardından dosyaları tek tek yazdırdım.
 
     ``` shell
     $ cat 1.txt
@@ -26,7 +30,8 @@ $ echo 3 > 3.txt
     $ cat 3.txt
     3
     ```
-- tek seferde. Fakat hangi çıktı hangi dosya isminde bilinmiyor.
+
+- sonrasında tek seferde yazdırdım. Fakat hangi çıktı hangi dosya isminde bilinmiyor.
 
     ``` shell
     $ cat {1..3}.txt
@@ -35,27 +40,35 @@ $ echo 3 > 3.txt
     3
     ```
 
-Bunları ardışık olarak birleştirdim. Bu şekilde, dosyaları alt alta görüntüleyebiliyoruz.
+- {1..3}.txt dosyalarını ardışık olarak birleştirdim ve yine tek dosya olarak görüntüleyebildim.
 
-``` shell
-$ cat 1.txt 2.txt 3.txt > 123.txt
-$ cat 123.txt
-1
-2
-3
-```
+    ``` shell
+    $ cat 1.txt 2.txt 3.txt > 123.txt
+    $ cat 123.txt
+    1
+    2
+    3
+    ```
 
-Bir başka kullanım senaryosu ise dosyalara eklemeler yapmak istediğinizde ortaya çıkar. Örneğin, bir dosyaya eklemeler yaparken sadece sonuncusu görünüyorsa, bunu ">>(büyüktür işareti)" kullanarak çözebilirsiniz. Örneğin:
+# Dosya Yönlendirmesi
+
+Bir başka kullanım senaryosu ise dosya yönlendirmesi yapmak istediğinizde ortaya çıkar. 
+[`Cat`]([^1]) stdout çıktısı verir ve bu çıktıyı da bir dosyaya yönlendirebilirsiniz.
 
 ``` shell
 $ echo "Arda" >> günlük
 $ echo "Fakat sadece günlük kalmış" >> günlük
-$ cat günlük
+$ cat günlük >> günlük2
+$ cat günlük2
+Arda
+Fakat sadece günlük kalmış
 Arda
 Fakat sadece günlük kalmış
 ```
 
-> Cat komutu, dosyaları birleştirmenin yanı sıra farklı switch'leri de destekler. 
+## [`Cat`]([^1]) Seçenekleri
+
+> [`Cat`]([^1]) komutu, dosyaları birleştirmenin yanı sıra farklı seçeneklerle de kullanılabilir.
 
 Örnek dosyayı oluşturdum.
 
@@ -63,7 +76,7 @@ Fakat sadece günlük kalmış
 seq 5 > asd
 ```
 
-- "-n" ve "-b" switchlari dosyanın satır numaralarını gösterirken
+- `-n` ve `-b` seçenekleri dosyanın satır numaralarını gösterirken
 
     ``` shell
     $ cat -b asd
@@ -74,7 +87,7 @@ seq 5 > asd
         5  5
     ```
 
-- "-e" switch'i satır sonu karakterlerini gösterir.(-vE)
+- `-e` anahtarı satır sonu karakterlerini gösterir.(`-vE`)
 
     ``` shell
     $ cat -e asd
@@ -85,40 +98,34 @@ seq 5 > asd
     5$
     ```
 
-- Ayrıca, "-E" seçeneği dosyanın sonundaki satır sonu karakterini gösterirken,
-- "-T" seçeneği görüntülenen satırlarda tab karakterlerini belirtir.
-
-Cat komutu aynı zamanda büyük dosyalar oluşturmak için de kullanılabilir. Örneğin:
-
-``` shell
-$ echo "asd" > büyük_dosya
-```
-
-Bu komut, "asd" kelimesini içeren büyük bir dosya oluşturur. Ardından, dosya içerisindeki satır sonu karakterleri veya diğer switch'leri test edebilirsiniz.
-
-Genel olarak, "cat" komutu, dosyaları birleştirme, içeriklerini gösterme ve farklı seçeneklerle kullanma esnekliği sağlar. Bu, Linux kullanıcıları için oldukça yararlı bir araçtır.
-
-Cat komutu ile ilgili temel kullanımları ve bazı yaygın switch'leri gördük. Bu komut, dosya içeriklerini birleştirmek ve ekrana yazdırmak için kullanılabilir.
+- Ayrıca, `-E` seçeneği dosyanın sonundaki satır sonu karakterini gösterirken,
+- `-T` seçeneği görüntülenen satırlarda tab karakterlerini belirtir.
 
 ## Gereksiz kullanımı
 
-cat zaten dosya ismi verilmez ise zaten stdout gönderir. Dosyayı bir daha işleme yönlendirmeye gerek yok.
+- [`Cat`]([^1]) zaten dosya ismi verilmez ise zaten `stdout` gönderir. 
 
-``` shell
-$ cat asd
-```
+    ``` shell
+    $ cat asd
+    ```
 
-``` shell
-$ cat < asd
-```
+- Dosyayı bir daha işleme yönlendirmeye gerek yok.
 
-``` shell
-$ cat stdout < asd
-```
+    ``` shell
+    $ cat < asd
+    ```
 
-``` shell
-$ cat asd > $(tty)
-```
+- Dosyayı bir daha `stdout` yönlendirmeye gerek yok.
+
+    ``` shell
+    $ cat stdout < asd
+    ```
+
+- Dosyayı bir daha üzerinde çalıştın tty yönlendirmeye gerek yok.
+
+    ``` shell
+    $ cat asd > $(tty)
+    ```
 
 ## Örnekler
 
@@ -154,6 +161,7 @@ $ cat asd > $(tty)
     asdfafs          asdasdf                    asdf
     qwe
     ```
+
 - `-v` ile unicode gösterim devre dışı bırakıldı.
 
     ``` shell
@@ -171,6 +179,7 @@ $ cat asd > $(tty)
     asdfafs          asdasdf                    asdf
     qwe
     ```
+
 - `-n` ile satır sayısı eklendi ve önceki bilgiler birleştirildi.
 
     ``` shell
@@ -203,3 +212,5 @@ $ cat asd > $(tty)
         8  asdfafs          asdasdf                    asdf
         9  qwe
     ```
+
+[^1]: <https://www.man7.org/linux/man-pages/man1/cat.1.html>
