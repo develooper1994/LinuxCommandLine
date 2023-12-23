@@ -1,16 +1,16 @@
 [VIDEO](https://youtu.be/dC6JloOWy1o)
 
-# [Linux'ta Concatenate Komutu ve Kullanımı](https://youtu.be/dC6JloOWy1o)
+# [Linux'ta Concatenate Komutu](https://youtu.be/dC6JloOWy1o)
 
-[`Cat`]([^1]), aslında "concatenate" kelimesinin kısaltılmış halidir ve birçok farklı işlevi bulunmaktadır. Bu komut, sadece metin dosyalarını değil, aynı zamanda bazı medya türlerini de ardışık olarak birleştirebilir.
+[`Cat`]([^1]), aslında "concatenate" kelimesinin kısaltılmış halidir. Birçok farklı işlevi bulunmaktadır. Bu komut, sadece metin dosyalarını değil, aynı zamanda bazı veri ve medya türlerini de ardışık olarak birleştirebilir.
 
-Genel olarak, [`cat`]([^1]) komutu, dosyaları birleştirme, içeriklerini gösterme ve farklı seçeneklerle kullanma esnekliği sağlar. Bu, Linux kullanıcıları için oldukça yararlı bir araçtır.
+Genel olarak, [`cat`]([^1]) komutu, dosyaları birleştirme, içeriklerini gösterme ve farklı seçeneklerle kullanma esnekliği sağlar. Linux kullanıcıları için oldukça yararlı bir araçtır.
 
 ## Dosyaları Birleştirmek
 
-En yaygın kullanımı dosya içeriklerini ekrana yazdırmaktır. Ancak, benim için en önemli kullanımı, dosyaları birleştirmektir. Örneğin, metin dosyalarını ardışık olarak birleştirebilir ve tek bir dosya gibi gösterebilirsiniz.
+En yaygın kullanımı dosya içeriklerini ekrana yazdırmaktır. Benim için en önemli kullanımı, dosyaları birleştirmektir.
 
-- Örnek olarak, 1'den 3'e kadar olan dosyaları oluşturdum.
+- Örnek olarak, 1'den 3'e kadar olan dosyaları oluşturdum ve dosya adlarıyla dolduralım.
 
     ``` shell
     $ echo 1 > 1.txt
@@ -50,10 +50,11 @@ En yaygın kullanımı dosya içeriklerini ekrana yazdırmaktır. Ancak, benim i
     3
     ```
 
-# Dosya Yönlendirmesi
+## Dosya Yönlendirmesi
 
+(Daha sonrasında bu konunun üzerinde duracağım)
 Bir başka kullanım senaryosu ise dosya yönlendirmesi yapmak istediğinizde ortaya çıkar. 
-[`Cat`]([^1]) stdout çıktısı verir ve bu çıktıyı da bir dosyaya yönlendirebilirsiniz.
+[`Cat`]([^1]) `stdout` çıktısı verir ve bu çıktıyı da bir dosyaya yönlendirebilirsiniz.
 
 ``` shell
 $ echo "Arda" >> günlük
@@ -68,15 +69,13 @@ Fakat sadece günlük kalmış
 
 ## [`Cat`]([^1]) Seçenekleri
 
-> [`Cat`]([^1]) komutu, dosyaları birleştirmenin yanı sıra farklı seçeneklerle de kullanılabilir.
-
 Örnek dosyayı oluşturdum.
 
 ``` bash
 seq 5 > asd
 ```
 
-- `-n` ve `-b` seçenekleri dosyanın satır numaralarını gösterirken
+- `-n` ve `-b` seçenekleri dosyanın satır numaralarını gösterir.
 
     ``` shell
     $ cat -b asd
@@ -87,7 +86,9 @@ seq 5 > asd
         5  5
     ```
 
-- `-e` anahtarı satır sonu karakterlerini gösterir.(`-vE`)
+- `-E` seçeneği dosyanın sonundaki satır sonu karakterini gösterir.
+- `-v` unicode gösterimini devre dışı bırakır.
+- Dahası, `-e` anahtarı satır sonu karakterlerini gösterir.(`-vE`)
 
     ``` shell
     $ cat -e asd
@@ -97,9 +98,6 @@ seq 5 > asd
     4$
     5$
     ```
-
-- Ayrıca, `-E` seçeneği dosyanın sonundaki satır sonu karakterini gösterirken,
-- `-T` seçeneği görüntülenen satırlarda tab karakterlerini belirtir.
 
 ## Gereksiz kullanımı
 
