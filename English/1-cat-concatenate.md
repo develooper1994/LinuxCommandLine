@@ -2,10 +2,10 @@
 
 # [Linux'ta Concatenate Command](https://youtu.be/dC6JloOWy1o)
 
-[`Cat`]([^1]) is abbreviation of "concatenate" word. There are several functionalities.
+[`Cat`][cat] is abbreviation of "concatenate" word. There are several functionalities.
 This command not just combine sequentially text files also it can concatenate some data and media file types.
 
-[`cat`]([^1]) command combines, prints have different usage options in general. It is very handful tool for linux users.
+[`cat`][cat] command combines, prints have different usage options in general. It is very handful tool for linux users.
 
 ## Combining Files
 
@@ -55,7 +55,7 @@ Its most common usage is printing stuff to the screen. Combining files is the mo
 
 (I will elaborate on this issue later)
 Another usage scenario occurs when you want to redirect files. 
-[`Cat`]([^1]) outputs to the `stdout` file and you can redirect this special file to another file
+[`Cat`][cat] outputs to the `stdout` file and you can redirect this special file to another file
 
 ``` shell
 $ echo "Arda" >> günlük
@@ -68,7 +68,7 @@ Arda
 Fakat sadece günlük kalmış
 ```
 
-## [`Cat`]([^1]) Options
+## [`Cat`][cat] Options
 
 Let's create the example file.
 
@@ -102,7 +102,7 @@ seq 5 > asd
 
 ## Unnecessary Usage
 
-- [`Cat`]([^1]) gives output to `stdout` file in first place if the file name is not specified.
+- [`Cat`][cat] gives output to `stdout` file in first place if the file name is not specified.
 
     ``` shell
     $ cat asd
@@ -212,4 +212,4 @@ seq 5 > asd
         9  qwe
     ```
 
-[^1]: <https://www.man7.org/linux/man-pages/man1/cat.1.html>
+[cat]: <https://www.man7.org/linux/man-pages/man1/cat.1.html>

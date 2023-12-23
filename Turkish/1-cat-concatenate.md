@@ -2,9 +2,9 @@
 
 # [Linux'ta Concatenate Komutu](https://youtu.be/dC6JloOWy1o)
 
-[`Cat`]([^1]), aslında "concatenate" kelimesinin kısaltılmış halidir. Birçok farklı işlevi bulunmaktadır. Bu komut, sadece metin dosyalarını değil, aynı zamanda bazı veri ve medya türlerini de ardışık olarak birleştirebilir.
+[`Cat`][cat], aslında "concatenate" kelimesinin kısaltılmış halidir. Birçok farklı işlevi bulunmaktadır. Bu komut, sadece metin dosyalarını değil, aynı zamanda bazı veri ve medya türlerini de ardışık olarak birleştirebilir.
 
-Genel olarak, [`cat`]([^1]) komutu, dosyaları birleştirme, içeriklerini gösterme ve farklı seçeneklerle kullanma esnekliği sağlar. Linux kullanıcıları için oldukça yararlı bir araçtır.
+Genel olarak, [`cat`][cat] komutu, dosyaları birleştirme, içeriklerini gösterme ve farklı seçeneklerle kullanma esnekliği sağlar. Linux kullanıcıları için oldukça yararlı bir araçtır.
 
 ## Dosyaları Birleştirmek
 
@@ -54,7 +54,7 @@ En yaygın kullanımı dosya içeriklerini ekrana yazdırmaktır. Benim için en
 
 (Daha sonrasında bu konunun üzerinde duracağım)
 Bir başka kullanım senaryosu ise dosya yönlendirmesi yapmak istediğinizde ortaya çıkar. 
-[`Cat`]([^1]) `stdout` çıktısı verir ve bu çıktıyı da bir dosyaya yönlendirebilirsiniz.
+[`Cat`][cat] `stdout` çıktısı verir ve bu çıktıyı da bir dosyaya yönlendirebilirsiniz.
 
 ``` shell
 $ echo "Arda" >> günlük
@@ -67,7 +67,7 @@ Arda
 Fakat sadece günlük kalmış
 ```
 
-## [`Cat`]([^1]) Seçenekleri
+## [`Cat`][cat] Seçenekleri
 
 Örnek dosyayı oluşturdum.
 
@@ -101,7 +101,7 @@ seq 5 > asd
 
 ## Gereksiz kullanımı
 
-- [`Cat`]([^1]) zaten dosya ismi verilmez ise zaten `stdout` gönderir. 
+- [`Cat`][cat] zaten dosya ismi verilmez ise zaten `stdout` gönderir. 
 
     ``` shell
     $ cat asd
@@ -211,4 +211,4 @@ seq 5 > asd
         9  qwe
     ```
 
-[^1]: <https://www.man7.org/linux/man-pages/man1/cat.1.html>
+[cat]: <https://www.man7.org/linux/man-pages/man1/cat.1.html>

@@ -1,63 +1,89 @@
 [VIDEO](https://youtu.be/HfkMWo9ogh0)
 
-# [Tac and Rev](https://youtu.be/HfkMWo9ogh0)
+# [`Tac` ve `Rev`](https://youtu.be/HfkMWo9ogh0)
 
+Yeni bir komut daha göstereceğim. Bu komut komutla beraber artık ekrana bir şeyler yazdırmaya odaklanacağım. Aslında Unix/Linux ekosisteminde bir sürü komut vardır. Daha sonra diğer komutları da göstereceğim.
 
-Herkese merhaba Şimdi sizlere yeni bir
-komut daha göstereceğim bu komut komutla
-beraber artık Ekrana bir şeyler
-yazdırmaya
-odaklan şuradan göstereyim aslında bir
-sürü komut var daha sonraki videolarda
-onları da Göstereceğim
-tak komutu önceden
-neydi şimdi 3 satır olu birs bunu
+## [`Tac`][^tac]
 
-eır aşağıya doğru ters yazdıracak şakayı
-anladınız
-İnşallah cat cat de
+Numbers 3 satır ve 3 sütundan oluşan bir text dosyasıdır.
 
-yazdırırsın okunuş şimdi
-E şu diğer bir komut daha var Bu da Rev
-Rev de bu sefer sağdan sola ters
-yazdırıyor Eğer ben Cat deyip bir şey
-yazarsam ekrana bana echo
+``` shell
+$ seq 9 | xargs -n 3
+$ cat numbers 
+1 2 3
+4 5 6
+7 8 9
+```
 
-yapacak benzer şeyi ben takla yaparsam
-şimdi yukarıdan aşağı ters yazdıracak
-için yazdırması için buffer laması
-gerekiyor bir yerde kaydetmesi gerekiyor
-önce kaydedecek Daha sonrasında
-yazdıklarımı Ekol olacak Ctrl D
-basıyorum ve Kapattım şimdi Rev ile
-beraber
-yazdırıyorum sağdan
-sola
-Tamam
-e burada söylenecek çok bir şey
-yok Eğer ki herhangi bir şekilde Ne
-bileyim
-değişik bir şey deneyeceğim
-mesela
-Eee separatör diyeyim
+[`tac`][^tac] aşağıya doğru ters yazdırır.
 
-sonrasında bunu tersah
+``` shell
+$ tac numbers
+7 8 9
+4 5 6
+1 2 3
+```
 
-sırtı
+- `-s` seçeneğiyle split işlemi de gerçekleştirilebilir.
 
-bak tane separatör
-deneyeceğim buradan tabi Sonuncuyu
-alabildim asd a 2 nokta üst üste
-diyerekten ayırıyordu ve buradan sonucu
-alabildim Tamam bu da separatör olarak
+``` shell
+$ tac -s :
+q:w:e
+<Ctrl+D>
+e
+w:q:
+```
 
-ayırma şimdi bir bakalım Bunun dışında
-kullandığım falan da var bunun dışında
-işte revi göstereyim
-revde de seçenek yok
+> Not: [`cat`][^cat] ve [`tac`][^tac] arasındaki espriyi anlamışsınızdır.
 
-hani bu
-kadar şu anda iki komutu gösterdim Eee
-daha sonraki videolarda
-da diğer ekrana yazdırma komutlarını
-göstereceğim görüşmek üzere hoşça kalın
+## [`Rev`][^rev]
+
+Bir komut daha var. [`Rev`][^rev] de bu sefer sağdan sola ters
+yazdırır. Çalışmasını değiştirecek bir seçeneği yoktur.
+
+``` shell
+$ rev numbers
+3 2 1
+6 5 4
+9 8 7
+```
+
+### [`Cat`][^cat] vs [`Tac`][^tac] vs [`Rev`][^rev]
+
+Diyelimki [`cat`][^cat], [`tac`][^tac], [`rev`][^rev], ... gibi programları kendim yazmaya çalışıyorum. 
+- [`Cat`][^cat] gibi veriyi sıralı yazarmak için program içinde buffer tutmama gerek kalmaz. Çıktıyı hemen yansıtır.
+
+    ``` shell
+    $ cat
+    qwe
+    qwe
+    asd
+    asd
+    ```
+
+Fakat bir veriyi bir şekilde sırasının dışında yazdırmak istersem bir buffer ile işlem yapmam gerekir. Program veriyi tutmalı, işlemeli, işlemin bittiğini anlamalı ve veriyi işlemelidir. Kullanıcı girdi işleminin bittiğini '**Ctrl+D**' ile programa iletir ve program kapanır. Kapanırken de veriyi işleyebilir.
+
+- [`tac`][^tac] çıktıyı aşağıdan yukarıya doğru yazdırdığından buffer kullanıp '**Ctrl+D**' girdiği gerçekleştiğinde işlemelidir.
+
+    ``` shell
+    $ tac
+    qwe
+    asd
+    asd
+    qwe
+    ```
+
+- [`rev`][^rev] sadece sağdan sola ters yazdırdığından çıktıyı bekletmek zorunda değildir.
+
+    ``` shell
+    $ rev
+    qwe
+    ewq
+    asd
+    dsa
+    ```
+
+[^cat]: <https://www.man7.org/linux/man-pages/man1/cat.1.html>
+[^tac]: <https://man7.org/linux/man-pages/man1/tac.1.html>
+[^rev]: <https://man7.org/linux/man-pages/man1/rev.1.html>

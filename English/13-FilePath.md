@@ -26,7 +26,7 @@ In fact, what needs to be done is string split operation like in any other progr
 
 > Here are commands i found on the subject.
 
-### `dirname[^1]`
+### [`dirname`][dirname]
 
 Its purpose is to give the directory of the directory or file.
 What is does it removes file name along with the '/' separator.
@@ -54,7 +54,7 @@ dirname yok                                 # .
 echo $?                                     # last exit code
 ```
 
-### `basename`[^2]
+### `basename`[basename]
 
 Its purpose is similar to [dirname](DosyaYolu.md#dirname). This command takes file name in place of file path.
 What it does it removes file path along with the '/' seperator.
@@ -95,7 +95,7 @@ basename yok                                # yok
 echo $?                                     # last exit code
 ```
 
-### `readlink`[^3]
+### `readlink`[readlink]
 
 Base functionality is file name resolution.
 
@@ -109,7 +109,7 @@ readlink -f file
 readlink -f $PWD/file
 ```
 
-### `realpath`[^4]
+### `realpath`[realpath]
 
 Main functionality is resolving(follow) similar to [readlink](DosyaYolu.md#readlink).
 The main difference with `readlink` is that `readlink` by default only gives result 
@@ -169,7 +169,7 @@ echo $(realpath file)
 echo $(readlink -m file)
 ```
 
-[^1]: <https://linux.die.net/man/1/readlink>
-[^2]: <https://linux.die.net/man/1/basename>
-[^3]: <https://man7.org/linux/man-pages/man1/readlink.1.html>
-[^4]: <https://man7.org/linux/man-pages/man3/realpath.3.html>
+[dirname]: <https://linux.die.net/man/1/dirname>
+[basename]: <https://linux.die.net/man/1/basename>
+[readlink]: <https://man7.org/linux/man-pages/man1/readlink.1.html>
+[realpath]: <https://man7.org/linux/man-pages/man3/realpath.3.html>

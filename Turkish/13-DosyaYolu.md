@@ -28,7 +28,7 @@ fakat bash script ile yapılması gerekiyorsa birkaç komut vardır.
 
 > Konu ile ilgili bulduğum komutlar şunlardır:
 
-### `dirname`[^1]
+### [`dirname`][readlink]
 
 Amacı dosyanın veya dizinin içinde bulunduğu dizini vermektir.
 Yaptığı işlem ise dosya ismini '/' ayracıyla birlikte siler.
@@ -55,9 +55,9 @@ dirname yok                                 # .
 echo $?                                     # son programın çıkış kodu
 ```
 
-### `basename`[^2]
+### [`basename`][basename]
 
-Amacı [dirname](DosyaYolu.md#dirname) ile benzerdir. Burada dosya yolunu almak yerine dosya ismini alır. 
+Amacı [dirname](13-DosyaYolu.md#dirname) ile benzerdir. Burada dosya yolunu almak yerine dosya ismini alır.
 Yaptığı işlem ise dosya yolunu '/' ayracıyla birlikte siler.
 
 -`-z` seçeneğiyle birlikte kullanılırsa yeni satır karakteri üretmez. `xargs -0` ile kullanılabilir. `xargs -0` ile kullanılabilir.
@@ -95,7 +95,7 @@ basename yok                                # yok
 echo $?                                     # son programın çıkış kodu
 ```
 
-### `readlink`[^3]
+### [`readlink`][readlink]
 
 Temel işlevi dosya yolu çözümleme işlemini yapmaktır.
 
@@ -109,9 +109,9 @@ readlink -f file
 readlink -f $PWD/file
 ```
 
-### `realpath`[^4]
+### [`realpath`][realpath]
 
-Temel [readlink](DosyaYolu.md#readlink) gibi işlevi dosya yolu çözümleme işlemini yapmaktır. 
+Temel [readlink](13-DosyaYolu.md#readlink) gibi işlevi dosya yolu çözümleme işlemini yapmaktır.
 `readlink` ile arasındaki en büyük fark `readlink` varsayılan olarak sadece sembolik link ise sonuç verirken `realpath` hemen sonuç vermektedir.
 
 ``` shell
@@ -122,8 +122,8 @@ realpath /usr/../usr/..    # /
 1. `-z` seçeneğiyle birlikte kullanılırsa yeni satır karakteri üretmez. `xargs -0` ile kullanılabilir.
 2. `-s` anahtarının davranışı diğer path çözümlemesi yapan komutlardan ayrılır.
 
-    > "/usr/bin/X11/" "/usr/bin/" dizinini gösteren bir dizin olduğunu kabul edelim [^4]
-    
+    > "/usr/bin/X11/" "/usr/bin/" dizinini gösteren bir dizin olduğunu kabul edelim [realpath]
+
     ``` shell
     realpath /../usr/bin/X11/./xterm        # /usr/bin/xterm
     realpath -s /../usr/bin/X11/./xterm     # /usr/bin/X11/xterm
@@ -166,7 +166,7 @@ echo $(realpath file)
 echo $(readlink -m file)
 ```
 
-[^1]: <https://linux.die.net/man/1/readlink>
-[^2]: <https://linux.die.net/man/1/basename>
-[^3]: <https://man7.org/linux/man-pages/man1/readlink.1.html>
-[^4]: <https://man7.org/linux/man-pages/man3/realpath.3.html>
+[readlink]: <https://linux.die.net/man/1/readlink>
+[basename]: <https://linux.die.net/man/1/basename>
+[readlink]: <https://man7.org/linux/man-pages/man1/readlink.1.html>
+[realpath]: <https://man7.org/linux/man-pages/man3/realpath.3.html>
