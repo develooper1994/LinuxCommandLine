@@ -51,6 +51,7 @@ $ rev numbers
 ### [`Cat`][^cat] vs [`Tac`][^tac] vs [`Rev`][^rev]
 
 Diyelimki [`cat`][^cat], [`tac`][^tac], [`rev`][^rev], ... gibi programları kendim yazmaya çalışıyorum. 
+
 - [`Cat`][^cat] gibi veriyi sıralı yazdırmak için program içinde buffer tutmama gerek kalmaz. Çıktıyı hemen yansıtır.
 
     ``` shell
