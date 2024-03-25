@@ -8,7 +8,7 @@
 
 `bat` aslında [`cat`](#1-cat-concatenate.md)'in diğer bir hali özelleştirilmiş bir halidir. `bat` standart bir komut değildir ve paket yöneticinize bağlı olarak muhtemelen bunu internetten `sudo apt install bat` ile yüklemeniz gerekebilir.
 
-Öncelikle bunu söyleyeyim `bat` komutu daha çok bir kodları söz dizilimine göre renkli yazdırmak için kullanılıyor. `lolcat` ile benzerdir fakat `bat` söz dizilimine dikkat eder. `less` komutuna benzer fakat `less` varsayılan olarak renkli gösterim yapmaz. `more` ise sayfa sayfa gösterim sağlar. `bat` komutu renklendirilmiş `less` komutu olarak tarif edebilirim.
+Öncelikle şunu söyleyeyim `bat` komutu daha çok kodları söz dizilimine göre renkli yazdırmak için kullanılıyor. `lolcat` ile benzerdir fakat `bat` söz dizilimine dikkat eder. `less` komutuna benzer fakat `less` varsayılan olarak renkli gösterim yapmaz. `more` ise sayfa sayfa gösterim sağlar. `bat` komutu renklendirilmiş `less` komutu olarak tarif edebilirim.
 
 > Elimde bir tane script var şimdi `bat` ile yazdırayım. Çıkış yapmak üzere `q` tuşuna basın.
 
@@ -20,9 +20,9 @@ $bat -n cpu_usage_total.sh
 ...
 ```
 
-> Not: `bat` renkli gösterimi oldukça zor. Videoyu izlemenizi tavsiye ederim.
+> Not: Kodların renkli gösterimi oldukça zordur. Videoyu izlemenizi tavsiye ederim.
 
-> Not: `cat` de bir şekilde hani renkli şek yazdırmak mümkündür fakat her dil için ayrı söz dilim kuralı belirlemek gerekir. (Renklendime kuralları üzerinde uzun uzun durmaycağım fakat örnek olması açıından `$LSCOLORS` özel değişkenine bakabilirsiniz.)
+> Not: `cat` de bir şekilde hani renkli şek yazdırmak mümkündür fakat her dil için ayrı söz dilim kuralı belirlemek gerekir. (Renklendime kuralları üzerinde uzun uzun durmaycağım fakat merak eden olursa `$LSCOLORS` özel değişkenine bakabilirsiniz.)
 
 Komutunun en pratik kullanımı bir şekilde elinizde bir proje var, ideyi açmak uzun sürdüğünü varsayıyorum. Sadece ufak bir kod parçasının incelemesi gerekmektedir. `cat` ile baksanız ide benzeri bir deneyim elde edemeyeceksiniz. İşte `bat` böyle durumlarda kullanışlıdır.
 
