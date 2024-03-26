@@ -73,7 +73,7 @@ Yaptığı işlem ise dosya yolunu '/' ayracıyla birlikte siler.
 
     ``` shell
     basename -s .pyc $sysroot/python/site/numpy.pyc
-    # curl
+    # numpy
     ```
 
 Bazı özel değişkenler vardır. `$0` onlardan biridir ve konuyla ilgili olduğundan bahsetmeden geçemem. çalışan bash scriptin adını verir. 

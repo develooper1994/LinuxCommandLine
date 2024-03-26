@@ -6,7 +6,7 @@
 
 # [3 - `bat` - satır numaralı ve söz dizimine göre renklendirmiş yazdırma](https://youtu.be/wyaG3rkw_EE)
 
-`bat` aslında [`cat`](#1-cat-concatenate.md)'in diğer bir hali özelleştirilmiş bir halidir. `bat` standart bir komut değildir ve paket yöneticinize bağlı olarak muhtemelen bunu internetten `sudo apt install bat` ile yüklemeniz gerekebilir.
+`bat` aslında [`cat`](#1-cat-concatenate.md)'in bir halidir. `bat` standart bir komut değildir ve paket yöneticinize bağlı olarak muhtemelen bunu internetten `sudo apt install bat` ile yüklemeniz gerekebilir.
 
 Öncelikle şunu söyleyeyim `bat` komutu daha çok kodları söz dizilimine göre renkli yazdırmak için kullanılıyor. `lolcat` ile benzerdir fakat `bat` söz dizilimine dikkat eder. `less` komutuna benzer fakat `less` varsayılan olarak renkli gösterim yapmaz. `more` ise sayfa sayfa gösterim sağlar. `bat` komutu renklendirilmiş `less` komutu olarak tarif edebilirim.
 
